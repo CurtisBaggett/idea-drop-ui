@@ -3,7 +3,7 @@ import { getStoredAccessToken, setStoredAccessToken } from "./authToken";
 import { refreshAccessToken } from "@/api/auth";
 
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: "${import.meta.env.VITE_PRODUCTION_API_URL}/api",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -44,7 +44,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
